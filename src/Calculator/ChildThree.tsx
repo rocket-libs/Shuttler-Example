@@ -10,12 +10,18 @@ export default class ChildThree extends ShuttlerComponent<CalculatorModel>{
         
     }
 
-    
+    get _inputValue(): string{
+        if(this.props.shuttleStack.model){
+            return this.props.shuttleStack.model.answer;
+        }else{
+            return "";
+        }
+    }
 
     render(){
         return <div>
                     <input 
-                        defaultValue={this.props.shuttleStack.model?.answer}
+                        defaultValue={this._inputValue}
                         readOnly={true}
                         type="text"/>
                 </div>

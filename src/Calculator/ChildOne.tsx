@@ -10,14 +10,21 @@ export default class ChildOne extends ShuttlerComponent<CalculatorModel>{
     }
 
     _valueChanged(e: any){
-        //const thing = Object.assign(this.props.shuttleStack.model,{firstNumber: parseFloat(e.target.value)});
         this.pushDelta({firstNumber: parseFloat(e.target.value)});
+    }
+
+    get _inputValue(): string{
+        if(this.props.shuttleStack.model){
+            return this.props.shuttleStack.model.firstNumber;
+        }else{
+            return "";
+        }
     }
 
     render(){
         return <div>
                     <input 
-                        defaultValue={this.props.shuttleStack.model?.firstNumber}
+                        defaultValue={this._inputValue}
                         onChange={(e: any) => this._valueChanged(e)}
                         type="text"/>
                 </div>
